@@ -1,0 +1,19 @@
+Open Command Prompt
+---------------------------------------
+
+cd C:\Program Files\Java\jdk1.8.0_221\bin
+keytool.exe -genkey -alias tomcat -keyalg RSA -keystore c:\tomcatkeystore
+keytool.exe -list -keystore c:\tomcatkeystore
+
+
+Add below lines in Server.xml
+------------------------------------------------
+
+
+<Connector port="443" protocol="org.apache.coyote.http11.Http11NioProtocol"
+               maxThreads="150" SSLEnabled="true">
+        <SSLHostConfig>
+            <Certificate certificateKeystoreFile="c:\tomcatkeystore"
+                         type="RSA" keystorePass="changeit" />
+        </SSLHostConfig>
+</Connector>
